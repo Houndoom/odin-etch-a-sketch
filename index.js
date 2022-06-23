@@ -21,13 +21,19 @@ const noOfSquaresButton = document.querySelector('#no-of-squares');
 noOfSquaresButton.addEventListener('click',changeGrid)
 
 function changeGrid() {
-  let noOfSquares = prompt('Please enter the number of squares per side of the grid');
-  removeSquares();
-  createGrid(noOfSquares);
-  return;
+  let noOfSquares = parseInt(prompt('Please enter the number of squares per side of the grid. Please enter a number from 1 to 100.'));
+  console.log(noOfSquares);
+  if (isNaN(noOfSquares)) {
+    alert('Please enter a number');
+    changeGrid();
+    return;
+  } else if (noOfSquares >= 1 && noOfSquares <= 100) {
+    removeSquares();
+    createGrid(noOfSquares);
+    return;
+  } else {
+    alert('Please enter a number from 1 to 100');
+    changeGrid();
+    return;
+  }
 }
-
-/* Clear grid button */
-
-const clearGrid = document.querySelector('#clear-grid');
-clearGrid.addEventListener('click',removeSquares);
